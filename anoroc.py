@@ -1,7 +1,6 @@
-#!/usr/bin/env python3
 import wget
 import pandas
-import yaml
+from .utilities import get_countries
 
 
 # load the data
