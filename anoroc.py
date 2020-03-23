@@ -9,12 +9,6 @@ data_confirmed = pandas.read_csv(filename1)
 data_death = pandas.read_csv(filename2)
 data_recovered = pandas.read_csv(filename3)
 
-# Get the countries in continents from countries.yaml
-with open("countries.yaml", "r") as file:
-    countries = yaml.load(file, Loader=yaml.FullLoader)
-
-
-
 if __name__ == "__main__":
 
     if args.country:
