@@ -2,13 +2,12 @@ import wget
 import pandas
 from .utilities import get_countries
 
-
-# load the data
-data_confirmed = pandas.read_csv(filename1)
-data_death = pandas.read_csv(filename2)
-data_recovered = pandas.read_csv(filename3)
-
 if __name__ == "__main__":
+
+    # load the data
+    data_confirmed = pandas.read_csv(filename1)
+    data_death = pandas.read_csv(filename2)
+    data_recovered = pandas.read_csv(filename3)
 
     if args.country:
         country = args.country
