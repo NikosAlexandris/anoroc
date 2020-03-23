@@ -1,65 +1,10 @@
 #!/usr/bin/env python3
 import wget
-import os
 import pandas
 import numpy
 import matplotlib.pyplot as plt
-import argparse
 import yaml
 
-
-prog_descrip = """Pull csv corona data from github repo. Plot country cases."""
-
-parser = argparse.ArgumentParser(description=prog_descrip)
-parser.add_argument(
-    "-u", "--update", action="store_true", help="Download and update the csv file."
-)
-
-parser.add_argument(
-    "-c", "--country", help="Input name of the country which you want to plot."
-)
-
-parser.add_argument(
-    "-r",
-    "--region",
-    help="Input name of the region which you want to plot. You can choose from Africa, Asia, Europe, North America, Oceania, South America.",
-)
-
-parser.add_argument(
-    "-e",
-    "--exclude",
-    help="Input name of the country which you want to be excluded from the region.",
-)
-
-args = parser.parse_args()
-
-url_confirmed = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
-
-url_death = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv"
-
-url_recovered = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv"
-
-filename1 = "cases_confirmed.csv"
-filename2 = "cases_death.csv"
-filename3 = "cases_recovered.csv"
-
-# update the csv data if the update flag is passed
-if args.update:
-    if os.path.exists(filename1):
-        os.remove(filename1)
-    if os.path.exists(filename2):
-        os.remove(filename2)
-    if os.path.exists(filename3):
-        os.remove(filename3)
-
-# download csv if file doesn't exist
-if not os.path.exists(filename1):
-    print("\n\nDownloading data.")
-    wget.download(url_confirmed, out=filename1)
-if not os.path.exists(filename2):
-    wget.download(url_death, out=filename2)
-if not os.path.exists(filename3):
-    wget.download(url_recovered, out=filename3)
 
 # load the data
 data_confirmed = pandas.read_csv(filename1)
